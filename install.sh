@@ -1,20 +1,9 @@
 #!/bin/bash
 
-latest="v4.20-9608-rtm-2016.04.17"
-lateststable="v4.20-9608-rtm-2016.04.17"
+version="v4.20-9608-rtm-2016.04.17"
 
-initfile="vpnserver2"
+initfile="vpnserver"
 
-echo "--------------------------------------------------------------------"
-echo "SoftEther VPN Server Install script"
-echo "By AhmadShamli"
-echo "http://github.com/AhmadShamli"
-echo "http://AhmadShamli.com"
-echo "credit: DigitalOcean and StackOverflow"
-echo "https://www.digitalocean.com/community/tutorials/how-to-setup-a-multi-protocol-vpn-server-using-softether"
-echo "--------------------------------------------------------------------"
-echo "--------------------------------------------------------------------"
-echo
 echo "Select Architecture"
 echo
 echo " 1. Arm EABI (32bit)"
@@ -44,26 +33,6 @@ else #default if non selected
 	arch="32bit_-_Intel_x86"
 	arch2="x86-32bit"
 	echo "Selected : 2 " $arch
-fi
-
-echo "--------------------------------------------------------------------"
-echo
-echo "Select build"
-echo
-echo " 1. latest(might include beta/rc)"
-echo " 2. latest stable"
-echo
-echo "Please choose build: "
-read tmp
-echo
-
-if test "$tmp" = "2"
-then
-	version="$lateststable"
-	echo "Latest stable selected: 2 "$lateststable
-else
-	version="$latest"
-	echo "Latest build(stable/beta) selected: 1 "$latest
 fi
 
 file="softether-vpnserver-"$version"-linux-"$arch2".tar.gz"
@@ -144,17 +113,5 @@ chmod 755 /etc/init.d/"$initfile"
 update-rc.d "$initfile" defaults
 /etc/init.d/"$initfile" start
 	
-echo "--------------------------------------------------------------------"
-echo "--------------------------------------------------------------------"
-echo "Installation done. Hurray."
-echo "Now you may want to change VPN server password."
-echo "Run in terminal:"
-echo "./vpncmd"
-echo "Press 1 to select \"Management of VPN Server or VPN Bridge\","
-echo "then press Enter without typing anything to connect to the "
-echo "localhost server, and again press Enter without inputting "
-echo "anything to connect to server by server admin mode."
-echo "Then use command below to change admin password:"
-echo "ServerPasswordSet"
-echo "Done...."
+echo "DONE"
 
