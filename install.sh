@@ -14,26 +14,8 @@ echo "Please choose architecture: "
 read tmp
 echo
 
-if test "$tmp" = "3"
-then
-	arch="64bit_-_Intel_x64_or_AMD64"
-	arch2="x64-64bit"
-	echo "Selected : 1 " $arch
-elif test "$tmp" = "2"
-then
-	arch="32bit_-_Intel_x86"
-	arch2="x86-32bit"
-	echo "Selected : 2 " $arch
-elif test "$tmp" = "1"
-then
-	arch="32bit_-_ARM_EABI"
-	arch2="arm_eabi-32bit"
-	echo "Selected : 3 " $arch
-else #default if non selected
-	arch="32bit_-_Intel_x86"
-	arch2="x86-32bit"
-	echo "Selected : 2 " $arch
-fi
+arch="64bit_-_Intel_x64_or_AMD64"
+arch2="x64-64bit"
 
 file="softether-vpnserver-"$version"-linux-"$arch2".tar.gz"
 link="http://www.softether-download.com/files/softether/"$version"-tree/Linux/SoftEther_VPN_Server/"$arch"/"$file
@@ -59,7 +41,7 @@ else
 	break
 fi
 
-apt-get update && apt-get upgrade
+apt-get update && apt-get upgrade -y
 apt-get install build-essential -y
 	
 make
