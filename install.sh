@@ -48,26 +48,6 @@ fi
 
 echo "--------------------------------------------------------------------"
 echo
-echo "Select OS"
-echo
-echo " 1. Debian/Ubuntu"
-echo " 2. CentOS/Fedora"
-echo
-echo "Please choose OS: "
-read tmp
-echo
-
-if test "$tmp" = "2"
-then
-	os="cent"
-	echo "Selected : 2 CentOS/Fedora"
-else
-	os="deb"
-	echo "Selected : 1 Debian/Ubuntu"
-fi
-
-echo "--------------------------------------------------------------------"
-echo
 echo "Select build"
 echo
 echo " 1. latest(might include beta/rc)"
@@ -110,13 +90,8 @@ else
 	break
 fi
 
-if [ "$os" -eq "cent" ];then
-	yum upgrade
-	yum groupinstall "Development Tools" gcc
-else
-	apt-get update && apt-get upgrade
-	apt-get install build-essential -y
-fi
+apt-get update && apt-get upgrade
+apt-get install build-essential -y
 	
 make
 cd ..
@@ -166,12 +141,8 @@ exit 0
 EOF
 
 chmod 755 /etc/init.d/"$initfile"
-if [ "$os" -eq "cent" ];then
-	chkconfig --add "$initfile" 
-	/etc/init.d/"$initfile" start
-else
-	update-rc.d "$initfile" defaults
-	/etc/init.d/"$initfile" start
+update-rc.d "$initfile" defaults
+/etc/init.d/"$initfile" start
 fi
 	
 echo "--------------------------------------------------------------------"
