@@ -143,7 +143,6 @@ EOF
 chmod 755 /etc/init.d/"$initfile"
 update-rc.d "$initfile" defaults
 /etc/init.d/"$initfile" start
-fi
 	
 echo "--------------------------------------------------------------------"
 echo "--------------------------------------------------------------------"
